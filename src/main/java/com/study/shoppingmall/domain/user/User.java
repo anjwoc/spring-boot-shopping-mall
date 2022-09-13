@@ -2,10 +2,7 @@ package com.study.shoppingmall.domain.user;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.study.shoppingmall.domain.common.BaseTimeEntity;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
@@ -13,7 +10,7 @@ import javax.persistence.*;
 @Entity
 @Getter
 @Setter
-@Builder
+@Builder @AllArgsConstructor
 @NoArgsConstructor
 public class User extends BaseTimeEntity {
     @Id
