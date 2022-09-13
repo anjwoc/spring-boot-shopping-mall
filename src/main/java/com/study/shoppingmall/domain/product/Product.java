@@ -1,6 +1,6 @@
 package com.study.shoppingmall.domain.product;
 
-import com.study.shoppingmall.domain.category.Category;
+import com.study.shoppingmall.domain.cart.Cart;
 import com.study.shoppingmall.domain.common.BaseTimeEntity;
 import com.study.shoppingmall.domain.enums.ProductStatus;
 import com.study.shoppingmall.domain.productImage.ProductImage;
@@ -52,6 +52,9 @@ public class Product extends BaseTimeEntity {
 
     @OneToMany(mappedBy = "product", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<ProductImage> productImageList;
+
+    @OneToMany(mappedBy = "product", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Cart> cartList;
 
 
 }
