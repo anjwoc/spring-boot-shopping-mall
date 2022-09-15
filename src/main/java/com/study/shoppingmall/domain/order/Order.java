@@ -1,5 +1,6 @@
 package com.study.shoppingmall.domain.order;
 
+import com.study.shoppingmall.domain.delivery.Delivery;
 import com.study.shoppingmall.domain.product.Product;
 import com.study.shoppingmall.domain.user.User;
 import lombok.*;
@@ -18,10 +19,13 @@ public class Order {
     @Column
     private String orderNumber;
 
-    @ManyToOne()
+    @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
 
-    @OneToOne()
+    @OneToOne
     private Product product;
+
+    @OneToOne
+    private Delivery delivery;
 }
