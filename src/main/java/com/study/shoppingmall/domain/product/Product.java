@@ -50,10 +50,10 @@ public class Product extends BaseTimeEntity {
     @Column(length = 300)
     private String thumbnail;
 
-    @OneToMany(mappedBy = "product", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "product", fetch = FetchType.LAZY)
     private List<ProductImage> productImageList;
 
-    @OneToMany(mappedBy = "product", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "product", fetch = FetchType.LAZY)
     private List<Cart> cartList;
 
 
