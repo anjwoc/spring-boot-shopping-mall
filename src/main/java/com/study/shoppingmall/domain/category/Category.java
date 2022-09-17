@@ -6,6 +6,7 @@ import lombok.*;
 
 import javax.persistence.*;
 
+@Table(name = "categorys")
 @Entity
 @Getter
 @Setter

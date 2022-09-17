@@ -2,15 +2,15 @@ package com.study.shoppingmall.domain.user;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.study.shoppingmall.domain.common.BaseTimeEntity;
-//import com.study.shoppingmall.domain.order.Order;
+import com.study.shoppingmall.domain.order.Order;
 import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
 import java.util.List;
 
-@Entity
 @Table(name = "users")
+@Entity
 @Getter
 @Setter
 @Builder @AllArgsConstructor
@@ -39,9 +39,9 @@ public class User extends BaseTimeEntity {
     @ColumnDefault("0")
     private Integer savings;
 
-//    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-//    @JsonIgnore
-//    private List<Order> orderList;
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    @JsonIgnore
+    private List<Order> orders;
 
 }
 

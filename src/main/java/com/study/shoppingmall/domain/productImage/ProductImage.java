@@ -8,6 +8,7 @@ import lombok.*;
 
 import javax.persistence.*;
 
+@Table(name = "productImages")
 @Entity
 @Getter
 @Setter
