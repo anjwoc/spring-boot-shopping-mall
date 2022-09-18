@@ -1,23 +1,31 @@
 package com.study.shoppingmall.domain.user;
 
 import com.querydsl.core.BooleanBuilder;
+import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
+import com.study.shoppingmall.dto.QUserDto;
+import com.study.shoppingmall.dto.UserDto;
+import com.study.shoppingmall.dto.UserSearchCondition;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
-import org.springframework.util.StringUtils;
 
 import javax.persistence.EntityManager;
+import java.util.List;
 import java.util.Optional;
+
+
+import static com.study.shoppingmall.domain.user.QUser.user;
+import static org.springframework.util.StringUtils.*;
 
 @Repository
 @RequiredArgsConstructor
 public class UserRepository {
-    private JPAQueryFactory queryFactory;
-    QUser user = new QUser("user");
+    private final JPAQueryFactory queryFactory;
     private final EntityManager em;
 
-    public void save(User user) {
+    public User save(User user) {
         em.persist(user);
+        return user;
     }
 
     public void delete(User user) {
@@ -27,7 +35,7 @@ public class UserRepository {
     public Optional<User> findById(Long id) {
         BooleanBuilder builder = new BooleanBuilder();
 
-        if (!StringUtils.hasText(id.toString())){
+        if (!hasText(id.toString())){
             builder.and(user.id.eq(id));
         }
 
@@ -37,6 +45,46 @@ public class UserRepository {
                         .where(builder)
                         .fetchOne()
         );
+    }
+
+    public List<UserDto> userList(UserSearchCondition condition) {
+        return queryFactory
+                .select(new QUserDto(
+                        user.email,
+                        user.username,
+                        user.age,
+                        user.address,
+                        user.balance
+                ))
+                .from(user)
+                .where(
+                        usernameEq(condition.getUsername()),
+                        ageGoe(condition.getAgeGoe()),
+                        ageLoe(condition.getAgeLoe()),
+                        balanceGoe(condition.getBalanceGoe()),
+                        balanceLoe(condition.getBalanceLoe())
+                )
+                .fetch();
+    }
+
+    private BooleanExpression usernameEq(String username){
+        return hasText(username) ? user.username.eq(username) : null;
+    }
+
+    private BooleanExpression balanceGoe(Integer balance) {
+        return balance != null ? user.balance.goe(balance) : null;
+    }
+
+    private BooleanExpression balanceLoe(Integer balance) {
+        return balance != null ? user.balance.loe(balance) : null;
+    }
+
+    private BooleanExpression ageGoe(Integer age) {
+        return age != null ? user.age.goe(age) : null;
+    }
+
+    private BooleanExpression ageLoe(Integer age){
+        return age != null ? user.age.loe(age) : null;
     }
 
 }

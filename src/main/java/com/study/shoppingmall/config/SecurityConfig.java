@@ -18,12 +18,13 @@ public class SecurityConfig {
                 {
                     try {
                         auth
-                            .mvcMatchers("/", "/h2-console/**", "/users/*")
+                            .mvcMatchers("/", "/h2-console", "/h2-console/**", "/users", "/users/**")
                             .permitAll()
                             .anyRequest()
                             .authenticated()
                             .and()
                             .csrf()
+                                .ignoringAntMatchers("/h2-console")
                                 .ignoringAntMatchers("/h2-console/**")
                                 .disable();
                     } catch (Exception e) {

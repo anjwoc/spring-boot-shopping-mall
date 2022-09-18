@@ -5,7 +5,7 @@ public enum ProductStatus {
     STOP("판매중지"),
     SALE("판매중");
 
-    private String status;
+    private final String status;
 
     ProductStatus(String status) {
         this.status = status;
