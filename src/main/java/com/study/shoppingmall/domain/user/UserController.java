@@ -14,23 +14,23 @@ import java.util.List;
 public class UserController {
     private final UserService userService;
 
-    @GetMapping("/users/{id}")
+    @GetMapping("/{id}")
     public User getUser(@PathVariable Long id) {
         return userService.findUser(id)
                 .orElse(null);
     }
 
-    @GetMapping("/users")
+    @GetMapping("")
     public List<UserDto> getUserList(UserSearchCondition condition) {
         return userService.userList(condition);
     }
 
-    @PostMapping("/users")
+    @PostMapping("")
     public Long save(@RequestBody UserRequestDto requestDto) {
         return userService.save(requestDto);
     }
 
-    @DeleteMapping("/users/{id}")
+    @DeleteMapping("/{id}")
     public void delete(@PathVariable Long id) {
         userService.deleteUser(id);
     }
