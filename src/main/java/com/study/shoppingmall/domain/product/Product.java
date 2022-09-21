@@ -1,6 +1,7 @@
 package com.study.shoppingmall.domain.product;
 
 import com.study.shoppingmall.domain.cart.Cart;
+import com.study.shoppingmall.domain.category.Category;
 import com.study.shoppingmall.domain.common.BaseTimeEntity;
 import com.study.shoppingmall.domain.enums.ProductStatus;
 import com.study.shoppingmall.domain.productImage.ProductImage;
@@ -21,12 +22,17 @@ public class Product extends BaseTimeEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(length = 20)
-    private String categoryCode;
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    private Category category;
 
     // 상품 이름
     @Column(length = 200)
     private String productName;
+
+    // 판매자 아이디
+    @Column
+    private String sellerId;
 
     // 상품 가격
     @Column
@@ -56,6 +62,10 @@ public class Product extends BaseTimeEntity {
 
     @OneToMany(mappedBy = "product", fetch = FetchType.LAZY)
     private List<Cart> cartList;
+
+//    public void setCategory(Category category){
+//        this.category = category;
+//    }
 
 
 }

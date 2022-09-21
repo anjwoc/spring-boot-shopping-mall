@@ -1,10 +1,14 @@
 package com.study.shoppingmall.domain.category;
 
 import com.study.shoppingmall.domain.common.BaseTimeEntity;
+import com.study.shoppingmall.domain.product.Product;
 import com.study.shoppingmall.dto.BooleanToActiveConverter;
 import lombok.*;
+import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Table(name = "categorys")
 @Entity
@@ -26,7 +30,9 @@ public class Category extends BaseTimeEntity {
     @Column
     private Integer depth;
 
+    @OneToMany(mappedBy = "category")
+    private List<Product> products = new ArrayList<Product>();
+
     @Column
-    @Convert(converter = BooleanToActiveConverter.class)
     private Boolean active;
 }
