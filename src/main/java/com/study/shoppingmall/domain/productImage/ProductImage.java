@@ -5,6 +5,7 @@ import com.study.shoppingmall.domain.common.BaseTimeEntity;
 import com.study.shoppingmall.domain.product.Product;
 import com.study.shoppingmall.dto.BooleanToActiveConverter;
 import lombok.*;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 
@@ -13,6 +14,7 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Builder @AllArgsConstructor @NoArgsConstructor
+@EntityListeners(AuditingEntityListener.class)
 public class ProductImage extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

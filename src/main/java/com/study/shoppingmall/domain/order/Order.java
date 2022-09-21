@@ -6,6 +6,7 @@ import com.study.shoppingmall.domain.enums.OrderStatus;
 import com.study.shoppingmall.domain.product.Product;
 import com.study.shoppingmall.domain.user.User;
 import lombok.*;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 
@@ -14,6 +15,7 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Builder @AllArgsConstructor @NoArgsConstructor
+@EntityListeners(AuditingEntityListener.class)
 public class Order extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

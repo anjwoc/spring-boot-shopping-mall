@@ -6,6 +6,7 @@ import com.study.shoppingmall.domain.common.BaseTimeEntity;
 import com.study.shoppingmall.domain.enums.ProductStatus;
 import com.study.shoppingmall.domain.productImage.ProductImage;
 import lombok.*;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.util.List;
@@ -17,6 +18,7 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@EntityListeners(AuditingEntityListener.class)
 public class Product extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

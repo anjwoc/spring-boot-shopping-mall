@@ -1,10 +1,12 @@
 package com.study.shoppingmall.domain.delivery;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.study.shoppingmall.domain.common.BaseTimeEntity;
 import com.study.shoppingmall.domain.enums.DeliveryStatus;
 //import com.study.shoppingmall.domain.order.Order;
 import com.study.shoppingmall.domain.order.Order;
 import lombok.*;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 
@@ -13,7 +15,8 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Builder @AllArgsConstructor @NoArgsConstructor
-public class Delivery {
+@EntityListeners(AuditingEntityListener.class)
+public class Delivery extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
