@@ -14,6 +14,7 @@ spring:
     user:
       name: user
       password: 1234
+    authorize-mode: NONE
   h2:
     console:
       enabled: true

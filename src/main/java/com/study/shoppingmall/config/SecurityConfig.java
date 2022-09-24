@@ -11,6 +11,7 @@ import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -30,6 +31,10 @@ public class SecurityConfig {
     }
 
     @Bean
+    public WebSecurityCustomizer webSecurityCustomizer() {
+        return (web) -> web.ignoring().antMatchers("/h2-console/**");
+    }
+    @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
         http
@@ -40,18 +45,16 @@ public class SecurityConfig {
             .httpBasic().disable()
             .apply(new CustomFilterDsl())
             .and()
-//                .antMatcher("/h2-console/**").permitAll
             .authorizeHttpRequests(auth ->
                 {
                     try {
                         auth
-                            .mvcMatchers("/h2-console/", "/h2-console/**")
+                            .mvcMatchers("/h2-console/**")
                             .permitAll()
                             .anyRequest()
                             .authenticated()
                             .and()
                             .csrf()
-                                .ignoringAntMatchers("/h2-console")
                                 .ignoringAntMatchers("/h2-console/**")
                                 .disable();
                     } catch (Exception e) {
