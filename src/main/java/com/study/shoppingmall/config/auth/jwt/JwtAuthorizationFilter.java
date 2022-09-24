@@ -31,14 +31,13 @@ public class JwtAuthorizationFilter extends BasicAuthenticationFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws IOException, ServletException {
-        String key = JwtProperties.HEADER_STRING;
-        String header = request.getHeader(key);
-        if (header == null ||!header.startsWith(key)) {
+        String header = request.getHeader(JwtProperties.HEADER_STRING);
+        if (header == null ||!header.startsWith(JwtProperties.TOKEN_PREFIX)) {
             chain.doFilter(request, response);
             return;
         }
 
-        logger.info("header :" + header);
+        logger.info("header : " + header);
         String token = header.replace(JwtProperties.TOKEN_PREFIX, "");
 
         // Token Validation

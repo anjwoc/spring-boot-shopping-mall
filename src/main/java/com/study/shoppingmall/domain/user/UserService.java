@@ -5,6 +5,7 @@ import com.study.shoppingmall.dto.UserRequestDto;
 import com.study.shoppingmall.dto.UserSearchCondition;
 import lombok.RequiredArgsConstructor;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,6 +17,7 @@ import java.util.Optional;
 @Transactional(readOnly = true)
 public class UserService {
     private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
     public Optional<User> findUser(Long id) {
         return userRepository.findById(id);
@@ -28,7 +30,10 @@ public class UserService {
 
     @Transactional
     public Long join(UserRequestDto requestDto) {
-        return userRepository.save(requestDto.toEntity()).getId();
+        User user = requestDto.toEntity();
+        user.hashPassword(passwordEncoder);
+
+        return userRepository.save(user).getId();
     }
 
     @Transactional

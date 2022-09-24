@@ -10,6 +10,10 @@ spring:
         format_sql: true
     generate-ddl: true
     defer-datasource-initialization: true
+  security:
+    user:
+      name: user
+      password: 1234
   h2:
     console:
       enabled: true

@@ -7,6 +7,7 @@ import com.study.shoppingmall.domain.order.Order;
 import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.DynamicInsert;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.persistence.*;
 import java.util.List;
@@ -52,6 +53,15 @@ public class User extends BaseTimeEntity {
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     @JsonIgnore
     private List<Order> orders;
+
+    public User hashPassword(PasswordEncoder passwordEncoder) {
+        this.password = passwordEncoder.encode(this.password);
+        return this;
+    }
+
+    public boolean checkPassword(String plainPassword, PasswordEncoder passwordEncoder) {
+        return passwordEncoder.matches(plainPassword, this.password);
+    }
 
     public List<String> getRoleList() {
         return Stream.of(UserRole.values())
