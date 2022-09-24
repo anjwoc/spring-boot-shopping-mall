@@ -1,7 +1,7 @@
 package com.study.shoppingmall.domain.review;
 
 
-import com.study.shoppingmall.domain.common.BaseTimeEntity;
+import com.study.shoppingmall.common.BaseTimeEntity;
 import lombok.*;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 

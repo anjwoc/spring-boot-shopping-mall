@@ -1,10 +1,8 @@
 package com.study.shoppingmall.domain.category;
 
-import com.study.shoppingmall.domain.common.BaseTimeEntity;
+import com.study.shoppingmall.common.BaseTimeEntity;
 import com.study.shoppingmall.domain.product.Product;
-import com.study.shoppingmall.dto.BooleanToActiveConverter;
 import lombok.*;
-import org.hibernate.annotations.ColumnDefault;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;

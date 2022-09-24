@@ -1,8 +1,10 @@
 package com.study.shoppingmall.domain.user;
 
+import com.study.shoppingmall.dto.ResponseDto;
 import com.study.shoppingmall.dto.UserDto;
 import com.study.shoppingmall.dto.UserRequestDto;
 import com.study.shoppingmall.dto.UserSearchCondition;
+import com.study.shoppingmall.utils.ResponseUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,8 +28,10 @@ public class UserController {
     }
 
     @PostMapping("")
-    public Long save(@RequestBody UserRequestDto requestDto) {
-        return userService.join(requestDto);
+    public ResponseDto save(@RequestBody UserRequestDto requestDto) {
+        Long joinedUser = userService.join(requestDto);
+
+        return ResponseUtil.SUCCESS("회원가입이 되었습니다.", joinedUser);
     }
 
     @DeleteMapping("/{id}")

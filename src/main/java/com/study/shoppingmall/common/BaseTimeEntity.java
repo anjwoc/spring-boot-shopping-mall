@@ -1,4 +1,4 @@
-package com.study.shoppingmall.domain.common;
+package com.study.shoppingmall.common;
 
 import lombok.Getter;
 import org.springframework.data.annotation.CreatedDate;

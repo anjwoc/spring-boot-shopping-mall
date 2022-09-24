@@ -1,6 +1,6 @@
 package com.study.shoppingmall.domain.order;
 
-import com.study.shoppingmall.domain.common.BaseTimeEntity;
+import com.study.shoppingmall.common.BaseTimeEntity;
 import com.study.shoppingmall.domain.delivery.Delivery;
 import com.study.shoppingmall.domain.enums.OrderStatus;
 import com.study.shoppingmall.domain.product.Product;

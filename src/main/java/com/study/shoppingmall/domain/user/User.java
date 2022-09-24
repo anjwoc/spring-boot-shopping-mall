@@ -1,7 +1,7 @@
 package com.study.shoppingmall.domain.user;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.study.shoppingmall.domain.common.BaseTimeEntity;
+import com.study.shoppingmall.common.BaseTimeEntity;
 import com.study.shoppingmall.domain.enums.UserRole;
 import com.study.shoppingmall.domain.order.Order;
 import lombok.*;

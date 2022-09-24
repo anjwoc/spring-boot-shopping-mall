@@ -1,7 +1,6 @@
 package com.study.shoppingmall.domain.qna;
 
-import com.study.shoppingmall.domain.category.Category;
-import com.study.shoppingmall.domain.common.BaseTimeEntity;
+import com.study.shoppingmall.common.BaseTimeEntity;
 import lombok.*;
 
 import javax.persistence.*;

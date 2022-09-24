@@ -1,7 +1,7 @@
 package com.study.shoppingmall.domain.productImage;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.study.shoppingmall.domain.common.BaseTimeEntity;
+import com.study.shoppingmall.common.BaseTimeEntity;
 import com.study.shoppingmall.domain.product.Product;
 import com.study.shoppingmall.dto.BooleanToActiveConverter;
 import lombok.*;
