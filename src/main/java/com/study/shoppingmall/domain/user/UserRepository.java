@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
+import javax.swing.text.html.Option;
 import java.util.List;
 import java.util.Optional;
 
@@ -37,6 +38,21 @@ public class UserRepository {
 
         if (!hasText(id.toString())){
             builder.and(user.id.eq(id));
+        }
+
+        return Optional.ofNullable(
+                queryFactory
+                        .selectFrom(user)
+                        .where(builder)
+                        .fetchOne()
+        );
+    }
+
+    public Optional<User> findByUsername(String username) {
+        BooleanBuilder builder = new BooleanBuilder();
+
+        if (!hasText(username.toString())){
+            builder.and(user.username.eq(username));
         }
 
         return Optional.ofNullable(

@@ -4,6 +4,7 @@ import com.study.shoppingmall.dto.UserDto;
 import com.study.shoppingmall.dto.UserRequestDto;
 import com.study.shoppingmall.dto.UserSearchCondition;
 import lombok.RequiredArgsConstructor;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -26,7 +27,7 @@ public class UserService {
 
 
     @Transactional
-    public Long save(UserRequestDto requestDto) {
+    public Long join(UserRequestDto requestDto) {
         return userRepository.save(requestDto.toEntity()).getId();
     }
 

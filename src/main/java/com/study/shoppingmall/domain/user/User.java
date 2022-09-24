@@ -10,6 +10,8 @@ import org.hibernate.annotations.DynamicInsert;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Table(name = "users")
 @Entity
@@ -50,5 +52,11 @@ public class User extends BaseTimeEntity {
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     @JsonIgnore
     private List<Order> orders;
+
+    public List<String> getRoleList() {
+        return Stream.of(UserRole.values())
+                .map(Enum::name)
+                .collect(Collectors.toList());
+    }
 }
 

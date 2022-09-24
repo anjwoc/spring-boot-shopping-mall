@@ -47,6 +47,11 @@ dependencies {
     implementation "com.querydsl:querydsl-jpa:${queryDslVersion}"
     implementation "com.querydsl:querydsl-apt:${queryDslVersion}"
     implementation "com.querydsl:querydsl-core:${queryDslVersion}"
+
+    // jwt
+    // https://mvnrepository.com/artifact/com.auth0/java-jwt
+    implementation 'com.auth0:java-jwt:3.19.2'
+
 }
 
 // querydsl 추가 시작

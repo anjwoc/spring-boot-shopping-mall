@@ -27,7 +27,7 @@ public class UserController {
 
     @PostMapping("")
     public Long save(@RequestBody UserRequestDto requestDto) {
-        return userService.save(requestDto);
+        return userService.join(requestDto);
     }
 
     @DeleteMapping("/{id}")
