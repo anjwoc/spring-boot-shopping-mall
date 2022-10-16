@@ -4,11 +4,13 @@ import com.study.shoppingmall.domain.cart.Cart;
 import com.study.shoppingmall.domain.category.Category;
 import com.study.shoppingmall.common.BaseTimeEntity;
 import com.study.shoppingmall.domain.enums.ProductStatus;
+import com.study.shoppingmall.domain.orderProduct.OrderProduct;
 import com.study.shoppingmall.domain.productImage.ProductImage;
 import lombok.*;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Table(name = "products")
@@ -61,13 +63,8 @@ public class Product extends BaseTimeEntity {
 
     @OneToMany(mappedBy = "product", fetch = FetchType.LAZY)
     private List<ProductImage> productImageList;
-
     @OneToMany(mappedBy = "product", fetch = FetchType.LAZY)
     private List<Cart> cartList;
-
-//    public void setCategory(Category category){
-//        this.category = category;
-//    }
 
 
 }
