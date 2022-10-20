@@ -1,5 +1,6 @@
 package com.study.shoppingmall.domain.user;
 
+import com.study.shoppingmall.domain.user.dto.LoginRequestDto;
 import com.study.shoppingmall.dto.ResponseDto;
 import com.study.shoppingmall.dto.UserDto;
 import com.study.shoppingmall.dto.UserRequestDto;
@@ -32,6 +33,13 @@ public class UserController {
         Long joinedUser = userService.join(requestDto);
 
         return ResponseUtil.SUCCESS("회원가입이 되었습니다.", joinedUser);
+    }
+
+    @PostMapping("login")
+    public ResponseDto login(@RequestBody LoginRequestDto loginRequestDto) {
+        Long loginedUser = userService.login(loginRequestDto);
+
+        return ResponseUtil.SUCCESS("로그인이 되었습니다.", loginedUser);
     }
 
     @DeleteMapping("/{id}")

@@ -1,29 +1,20 @@
-package com.study.shoppingmall.dto;
+package com.study.shoppingmall.domain.user.dto;
 
 import com.study.shoppingmall.domain.enums.UserRole;
 import com.study.shoppingmall.domain.user.User;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Getter
+@Data
 @NoArgsConstructor
-public class UserRequestDto {
+public class LoginRequestDto {
     private String email;
-    private String username;
-    private Integer age;
     private String password;
-    private String address;
-    private UserRole role;
 
     public User toEntity() {
         return User.builder()
                 .email(email)
-                .username(username)
-                .age(age)
                 .password(password)
-                .address(address)
-                .role(role)
                 .build();
     }
 }
-
