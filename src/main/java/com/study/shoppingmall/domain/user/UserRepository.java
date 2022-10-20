@@ -62,6 +62,21 @@ public class UserRepository {
         );
     }
 
+    public Optional<User> findByEmail(String email) {
+        BooleanBuilder builder = new BooleanBuilder();
+
+        if (!hasText(email.toString())){
+            builder.and(user.email.eq(email));
+        }
+
+        return Optional.ofNullable(
+                queryFactory
+                        .selectFrom(user)
+                        .where(builder)
+                        .fetchOne()
+        );
+    }
+
     public List<UserDto> userList(UserSearchCondition condition) {
         return queryFactory
                 .select(new QUserDto(

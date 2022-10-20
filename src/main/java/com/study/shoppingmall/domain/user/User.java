@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.study.shoppingmall.common.BaseTimeEntity;
 import com.study.shoppingmall.domain.enums.UserRole;
 import com.study.shoppingmall.domain.order.Order;
+import com.study.shoppingmall.domain.review.Review;
 import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.DynamicInsert;
@@ -14,13 +15,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-@Table(name = "users")
-@Entity
 @Getter
 @Setter
 @DynamicInsert
 @Builder @AllArgsConstructor
 @NoArgsConstructor
+@Entity
+@Table(name = "users")
 public class User extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -53,6 +54,10 @@ public class User extends BaseTimeEntity {
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     @JsonIgnore
     private List<Order> orders;
+
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private List<Review> reviews;
+
 
     public User hashPassword(PasswordEncoder passwordEncoder) {
         this.password = passwordEncoder.encode(this.password);
